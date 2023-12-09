@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #6ab0de;
+            color: #333;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #d3d3d3;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #6ab0de;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Psychics</h1>
+    </header>
+    <table>
+        <thead>
+            <tr>
+                <th>Место</th>
+                <th>Имя</th>
+                <th>Сумма</th>
+                <th>Наблюдатели</th>
+                <th>Экстрасенсы</th>
+                <th>Телезрители</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in people %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ p[1] }}</td>
+                    <td>{{ '%0.2f' % p[5] }}</td>
+                    <td>{{ '%0.2f' % p[2] }}</td>
+                    <td>{{ '%0.2f' % p[3] }}</td>
+                    <td>{{ '%0.2f' % p[4] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
