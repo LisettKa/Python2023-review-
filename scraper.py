@@ -6,7 +6,7 @@ import re
 from bs4 import BeautifulSoup
 import json
 
-from database import insert_psychic
+from database import DBAccessor
 
 url = "https://bitva-silnejshih.tnt-online.ru"
 
@@ -16,7 +16,7 @@ def scrapper_polling():
         try:
             html = requests.get(url)
             soup = BeautifulSoup(html.content, 'lxml')
-            script = soup.find_all('script')[10].text
+            script = soup.find_all('script')[8].text
 
             string = re.findall(r"let response = .+'\)", script)[0]
             string = string.lstrip("let response = JSON.parse('")
@@ -32,7 +32,7 @@ def scrapper_polling():
                 watcher = person['votesList']['1']['value']
                 psychics = person['votesList']['2']['value']
                 televiewer = person['votesList']['3']['value']
-                insert_psychic(name, watcher, psychics, televiewer)
+                DBAccessor().insert_psychic(name, watcher, psychics, televiewer)
 
             logging.info("Parsed successfully")
         except Exception:

@@ -1,11 +1,11 @@
 from threading import Thread
 
 from scraper import scrapper_polling
-from database import init_db
+from database import DBAccessor
 from web import app as flask_app
 
 if __name__ == '__main__':
-    init_db("data/data.db")
+    DBAccessor.init_db("data/data.db")
 
     Thread(target=scrapper_polling, daemon=True).start()
 
